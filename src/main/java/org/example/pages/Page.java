@@ -15,12 +15,12 @@ import java.time.Duration;
 public abstract class Page {
     protected WebDriver driver;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div[4]/div/div/div/div[2]/div[5]/a[1]")
-    public WebElement confirmEntranceButton;
-
     public Page(WebDriver driver) {
         this.driver = driver;
     }
+
+    @FindBy(how = How.XPATH, using = "/html/body/div[4]/div/div/div/div[2]/div[5]/a[1]")
+    private WebElement confirmEntranceButton;
 
     protected static<T> T initialize(WebDriver driver, String checkXpath, Class<T> clazz) {
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(StaleElementReferenceException.class);
@@ -30,4 +30,7 @@ public abstract class Page {
         return PageFactory.initElements(driver, clazz);
     }
 
+    public void confirmEntrance(){
+        confirmEntranceButton.click();
+    }
 }
