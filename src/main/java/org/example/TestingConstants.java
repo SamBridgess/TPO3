@@ -1,14 +1,18 @@
 package org.example;
 
-public class Constants {
+public class TestingConstants {
+    public static final String EMPTY = "";
+
     //register
+    public static final String CORRECT_USERNAME = "lololoshka228420";
+    public static final String CORRECT_PASSWORD = "y38tcy7y34c7y8";
+
     public static final String USERNAME_TOO_SHORT = "pp";
     public static final String USERNAME_TOO_LONG = "ppppppppppppppppppppppppppppppppppp";
     public static final String USERNAME_ONLY_DIGITS = "123123123123";
 
     public static final String PASSWORD_TOO_SHORT = "kk";
     public static final String PASSWORD_TOO_LONG = "asdfg123asdfg123asdfg123asdfg123asdfg123asdfg123";
-    public static final String PASSWORD_NO_DIGITS = "nmnmdfjsdfgjkd";
 
 
     //login
@@ -22,7 +26,4 @@ public class Constants {
     //search
     public static final String CORRECT_SEARCH = "Angela";
     public static final String INCORRECT_SEARCH = "234213523145";
-
-    public static final String CORRECT_SEARCH_RESULT = "Результат поиска:";
-    public static final String INCORRECT_SEARCH_RESULT = "По вашему запросу ничего не найдено.";
 }
