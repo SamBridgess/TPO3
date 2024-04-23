@@ -7,9 +7,15 @@ import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
+import java.io.File;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -132,11 +138,34 @@ public class MainPageTest {
 
         mainPage.fillSignUpUsername(TestingConstants.CORRECT_USERNAME);
         mainPage.fillSignUpPassword(TestingConstants.CORRECT_PASSWORD);
-        mainPage.clickRegister();
+        mainPage.clickSingUpConfirm();
 
         String errorMessage = mainPage.getTermsOfUseError();
         mainPage.closeRegister();
         assertEquals("Обязательно к заполнению.", errorMessage);
+    }
+
+    @Test
+    public void signInCorrectTest(){
+        mainPage.clickSignIn();
+        mainPage.fillSignInUsername(TestingConstants.EXISTING_USERNAME);
+        mainPage.fillSignInPassword(TestingConstants.EXISTING_PASSWORD);
+        mainPage.clickSignInConfirm();
+
+        String userPanelName = mainPage.getUserPanelName();
+        assertEquals(TestingConstants.EXISTING_USERNAME, userPanelName);
+        mainPage.logout();
+    }
+
+    @Test
+    public void signInIncorrectTest(){
+        mainPage.clickSignIn();
+        mainPage.fillSignInUsername(TestingConstants.WRONG_USERNAME);
+        mainPage.fillSignInPassword(TestingConstants.WRONG_PASSWORD);
+        mainPage.clickSignInConfirm();
+
+        String errorMessage = mainPage.getSignInError();
+        assertEquals("Неверное имя пользователя или пароль.", errorMessage);
     }
 }
 

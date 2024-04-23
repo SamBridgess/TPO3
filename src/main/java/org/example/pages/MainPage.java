@@ -1,8 +1,10 @@
 package org.example.pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
@@ -13,6 +15,10 @@ import java.time.Duration;
 
 
 public class MainPage {
+    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[2]/div/a")
+    private WebElement logo;
+
+    // sign up elements
     @FindBy(how = How.XPATH, using = "//*[@id=\"btn_signup\"]")
     private WebElement signUpButton;
 
@@ -38,14 +44,42 @@ public class MainPage {
     private WebElement termsOfUseError;
 
     @FindBy(how = How.XPATH, using = "/html/body/jsx[3]/div/div/div[2]/div/div/div/div/div[2]/form/div/div[2]/button")
-    private WebElement registerButton;
+    private WebElement signUpConfirmButton;
+
 
     @FindBy(how = How.XPATH, using = "/html/body/jsx[3]/div/div/div[2]/div/button")
     private WebElement closeRegisterButton;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/a[1]")
+    // sign in elements
+    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/a")
     private WebElement signInButton;
 
+    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/jsx/div/form/div/div[1]/div/div")
+    private WebElement signInError;
+
+    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/jsx/div/form/div/div[1]/div[2]/div/input")
+    private WebElement signInUsername;
+
+    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/jsx/div/form/div/div[2]/div[2]/div/input")
+    private WebElement signInPassword;
+
+    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/jsx/div/form/div/div[3]/button")
+    private WebElement signInConfirmButton;
+
+    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/div/div[3]/a[2]")
+    private WebElement userPanel;
+
+    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/div/div[3]/div[2]")
+    private WebElement menu;
+
+    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/div/div[3]/div[2]/div/ul/li[10]")
+    private WebElement logoutButton;
+
+    //@FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/jsx/div/form/div/div[4]/div")
+    @FindBy(how = How.CLASS_NAME, using = "spinner")
+    private WebElement spinner;
+
+    // search elements
     @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[4]/div/div[1]/input")
     private WebElement searchBar;
 
@@ -58,13 +92,16 @@ public class MainPage {
     @FindBy(how = How.CLASS_NAME, using = "lsr_i_highlight")
     private WebElement searchTextResult;
 
-    protected  WebDriverWait wait;
+    protected WebDriverWait wait;
+    protected Actions action;
 
     public void init(final WebDriver driver) {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        this.action = new Actions(driver);
         PageFactory.initElements(driver, this);
     }
 
+    // sign up elements
     public void clickSignUp() {
         wait.until(ExpectedConditions.visibilityOf(signUpButton));
         signUpButton.click();
@@ -105,9 +142,9 @@ public class MainPage {
         return termsOfUseError.getAttribute("innerHTML");
     }
 
-    public void clickRegister() {
-        wait.until(ExpectedConditions.visibilityOf(registerButton));
-        registerButton.click();
+    public void clickSingUpConfirm() {
+        wait.until(ExpectedConditions.visibilityOf(signUpConfirmButton));
+        signUpConfirmButton.click();
     }
 
     public void closeRegister(){
@@ -115,11 +152,49 @@ public class MainPage {
         closeRegisterButton.click();;
     }
 
+    // sign in elements
     public void clickSignIn(){
         wait.until(ExpectedConditions.visibilityOf(signInButton));
         signInButton.click();
     }
 
+    public void fillSignInUsername(String search){
+        wait.until(ExpectedConditions.visibilityOf(signInUsername));
+        signInUsername.sendKeys(search);
+    }
+
+    public void fillSignInPassword(String search){
+        wait.until(ExpectedConditions.visibilityOf(signInPassword));
+        signInPassword.sendKeys(search);
+    }
+
+    public String getSignInError(){
+        wait.until(ExpectedConditions.invisibilityOf(spinner));
+
+        wait.until(ExpectedConditions.visibilityOf(signInError));
+        return signInError.getAttribute("innerHTML");
+    }
+
+    public void clickSignInConfirm(){
+        wait.until(ExpectedConditions.visibilityOf(signInConfirmButton));
+        signInConfirmButton.click();
+    }
+
+    public String getUserPanelName(){
+        wait.until(ExpectedConditions.visibilityOf(userPanel));
+        return userPanel.getAttribute("innerHTML");
+    }
+
+    public void logout(){
+        wait.until(ExpectedConditions.visibilityOf(userPanel));
+        action.moveToElement(userPanel).moveToElement(logoutButton).click().build().perform();
+
+        wait.until(ExpectedConditions.visibilityOf(logo));
+        logo.click();
+    }
+
+
+    // search elements
     public void fillSearchBar(String search){
         wait.until(ExpectedConditions.visibilityOf(searchBar));
         searchBar.sendKeys(search);

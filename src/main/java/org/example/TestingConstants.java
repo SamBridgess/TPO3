@@ -16,8 +16,8 @@ public class TestingConstants {
 
 
     //login
-    public static final String EXISTING_USERNAME = "sam11123";
-    public static final String EXISTING_PASSWORD = "asdf123";
+    public static final String EXISTING_USERNAME = "sam123123";
+    public static final String EXISTING_PASSWORD = "zxczxczxc000";
 
     public static final String WRONG_USERNAME = "1123412342134";
     public static final String WRONG_PASSWORD = "asdf123";
