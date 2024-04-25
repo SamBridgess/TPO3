@@ -14,6 +14,9 @@ import java.time.Duration;
 
 
 public class MainPage {
+    @FindBy(how = How.XPATH, using = "/html/body/div[4]/div/div/div/div[2]/div[5]/a[1]")
+    private WebElement agreeAndEnterButton;
+
     @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[2]/div/a")
     private WebElement logo;
 
@@ -56,10 +59,12 @@ public class MainPage {
     @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/jsx/div/form/div/div[1]/div/div")
     private WebElement signInError;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/jsx/div/form/div/div[1]/div[2]/div/input")
+    // /html/body/div[2]/div[1]/div[5]/div/jsx/div/form/div/div[1]/div[2]/div/input
+    @FindBy(how = How.NAME, using = "log_in[username]")
     private WebElement signInUsername;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/jsx/div/form/div/div[2]/div[2]/div/input")
+    // /html/body/div[2]/div[1]/div[5]/div/jsx/div/form/div/div[2]/div[2]/div/input
+    @FindBy(how = How.NAME, using = "log_in[password]")
     private WebElement signInPassword;
 
     @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/jsx/div/form/div/div[3]/button")
@@ -74,15 +79,19 @@ public class MainPage {
     @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/div/div[3]/div[2]/div/ul/li[10]")
     private WebElement logoutButton;
 
-    //@FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/jsx/div/form/div/div[4]/div")
     @FindBy(how = How.CLASS_NAME, using = "spinner")
     private WebElement spinner;
+
+    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[6]/div/div/div[1]/div[1]/div[2]/span/a")
+    private WebElement goToMainPage;
 
     // search elements
     @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[4]/div/div[1]/input")
     private WebElement searchBar;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[4]/div/div[1]/button")
+
+    // /html/body/div[2]/div[1]/div[4]/div/div[1]/button
+    @FindBy(how = How.CLASS_NAME, using = "js-hns_submit")
     private WebElement searchButton;
 
     @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/div/div[3]/a[2]")
@@ -100,6 +109,11 @@ public class MainPage {
         PageFactory.initElements(driver, this);
     }
 
+    public void agreeAndEnter() {
+        wait.until(ExpectedConditions.visibilityOf(agreeAndEnterButton));
+        agreeAndEnterButton.click();
+    }
+
     // sign up elements
     public void clickSignUp() {
         wait.until(ExpectedConditions.visibilityOf(signUpButton));
@@ -113,11 +127,13 @@ public class MainPage {
 
     public void fillSignUpUsername(String username){
         wait.until(ExpectedConditions.visibilityOf(signUpUsername));
+        signUpUsername.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         signUpUsername.sendKeys(username);
     }
 
     public void fillSignUpPassword(String password){
         wait.until(ExpectedConditions.visibilityOf(signUpPassword));
+        signUpPassword.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         signUpPassword.sendKeys(password);
     }
 
@@ -159,11 +175,13 @@ public class MainPage {
 
     public void fillSignInUsername(String search){
         wait.until(ExpectedConditions.visibilityOf(signInUsername));
+        signInUsername.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         signInUsername.sendKeys(search);
     }
 
     public void fillSignInPassword(String search){
         wait.until(ExpectedConditions.visibilityOf(signInPassword));
+        signInPassword.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         signInPassword.sendKeys(search);
     }
 
@@ -188,8 +206,8 @@ public class MainPage {
         wait.until(ExpectedConditions.visibilityOf(userPanel));
         action.moveToElement(userPanel).moveToElement(logoutButton).click().build().perform();
 
-        wait.until(ExpectedConditions.visibilityOf(logo));
-        logo.click();
+        wait.until(ExpectedConditions.visibilityOf(goToMainPage));
+        goToMainPage.click();
     }
 
 
@@ -199,15 +217,19 @@ public class MainPage {
         searchBar.sendKeys(search);
     }
 
+    public void clearSearchBar(){
+        wait.until(ExpectedConditions.visibilityOf(searchBar));
+        searchBar.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+    }
+
     public void clickSearchButton() {
         wait.until(ExpectedConditions.visibilityOf(searchButton));
         searchButton.click();
     }
 
-    //todo remove
-    public void pressEnter(){
-        wait.until(ExpectedConditions.visibilityOf(searchBar));
-        searchBar.sendKeys(Keys.RETURN);
+    public void goHome() {
+        wait.until(ExpectedConditions.visibilityOf(logo));
+        logo.click();
     }
 
     public String getSearchResult(){

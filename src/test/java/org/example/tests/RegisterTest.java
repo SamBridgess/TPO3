@@ -1,17 +1,18 @@
 package org.example.tests;
 
+
 import org.example.TestingConstants;
 import org.example.pages.MainPage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MainPageTest {
+public class RegisterTest {
     private static WebDriver driver;
     private static MainPage mainPage;
 
@@ -23,31 +24,8 @@ public class MainPageTest {
         mainPage = new MainPage();
         mainPage.init(driver);
 
-        //todo согласиться зайти на сайт (надо думать куда убрать это)
-        driver.findElement(By.xpath("/html/body/div[4]/div/div/div/div[2]/div[5]/a[1]")).click();
+        mainPage.agreeAndEnter();
     }
-/*
-
-    @Test
-    public void correctSearchTest() {
-        mainPage.fillSearchBar(TestingConstants.CORRECT_SEARCH);
-        mainPage.clickSearchButton(); // почему-то работает только если кликнуть 2 раза (wtf)
-        mainPage.clickSearchButton();
-
-        String searchResult = mainPage.getSearchResult();
-        assertEquals("Результат поиска:", searchResult);
-    }
-
-    @Test
-    public void incorrectSearchTest() {
-        mainPage.fillSearchBar(TestingConstants.INCORRECT_SEARCH);
-        mainPage.clickSearchButton(); // wtf
-        mainPage.clickSearchButton();
-
-        String searchResult = mainPage.getSearchResult();
-        assertEquals("По вашему запросу ничего не найдено.", searchResult);
-    }
-*/
 
     private void skipWrongPopUps(){
         while(true){
@@ -59,7 +37,7 @@ public class MainPageTest {
         }
     }
 
-    private void testUsername(String username, String expected){
+    private void testUsername(String expected, String username){
         skipWrongPopUps();
 
         mainPage.fillSignUpUsername(username);
@@ -73,31 +51,31 @@ public class MainPageTest {
 
     @Test
     public void usernameTooShortTest() {
-        testUsername(TestingConstants.USERNAME_TOO_SHORT,"Слишком короткий (3 символов минимум).");
+        testUsername("Слишком короткий (3 символов минимум).", TestingConstants.USERNAME_TOO_SHORT);
     }
 
     @Test
     public void usernameTooLongTest() {
-        testUsername(TestingConstants.USERNAME_TOO_LONG,"Слишком длинный (24 символов максимум).");
+        testUsername("Слишком длинный (24 символов максимум).", TestingConstants.USERNAME_TOO_LONG);
     }
 
     @Test
     public void usernameOnlyDigitsTest() {
-        testUsername(TestingConstants.USERNAME_ONLY_DIGITS,"Только числа (0-9) запрещены.");
+        testUsername("Только числа (0-9) запрещены.", TestingConstants.USERNAME_ONLY_DIGITS);
     }
 
     @Test
     public void usernameAlreadyExistsTest() {
-        testUsername(TestingConstants.EXISTING_USERNAME,"Это имя пользователя уже занято. Попробуйте другое.");
+        testUsername("Это имя пользователя уже занято. Попробуйте другое.", TestingConstants.EXISTING_USERNAME);
     }
 
     @Test
     public void usernameEmptyTest() {
-        testUsername(TestingConstants.EMPTY,"Обязательно к заполнению.");
+        testUsername("Обязательно к заполнению.", TestingConstants.EMPTY);
     }
 
 
-    private void testPassword(String password, String expected){
+    private void testPassword(String expected, String password){
         skipWrongPopUps();
 
         mainPage.fillSignUpUsername(TestingConstants.CORRECT_USERNAME);
@@ -111,17 +89,17 @@ public class MainPageTest {
 
     @Test
     public void passwordTooShortTest() {
-        testPassword(TestingConstants.PASSWORD_TOO_SHORT,"Введенное значение слишком короткое");
+        testPassword("Введенное значение слишком короткое", TestingConstants.PASSWORD_TOO_SHORT);
     }
 
     @Test
     public void passwordTooLongTest() {
-        testPassword(TestingConstants.PASSWORD_TOO_LONG,"Введенное значение слишком длинное");
+        testPassword("Введенное значение слишком длинное", TestingConstants.PASSWORD_TOO_LONG);
     }
 
     @Test
     public void passwordEmptyTest() {
-        testUsername(TestingConstants.EMPTY,"Обязательно к заполнению.");
+        testUsername("Обязательно к заполнению.", TestingConstants.EMPTY);
     }
 
     @Test
@@ -135,29 +113,6 @@ public class MainPageTest {
         String errorMessage = mainPage.getTermsOfUseError();
         mainPage.closeRegister();
         assertEquals("Обязательно к заполнению.", errorMessage);
-    }
-
-    @Test
-    public void signInCorrectTest(){
-        mainPage.clickSignIn();
-        mainPage.fillSignInUsername(TestingConstants.EXISTING_USERNAME);
-        mainPage.fillSignInPassword(TestingConstants.EXISTING_PASSWORD);
-        mainPage.clickSignInConfirm();
-
-        String userPanelName = mainPage.getUserPanelName();
-        assertEquals(TestingConstants.EXISTING_USERNAME, userPanelName);
-        mainPage.logout();
-    }
-
-    @Test
-    public void signInIncorrectTest(){
-        mainPage.clickSignIn();
-        mainPage.fillSignInUsername(TestingConstants.WRONG_USERNAME);
-        mainPage.fillSignInPassword(TestingConstants.WRONG_PASSWORD);
-        mainPage.clickSignInConfirm();
-
-        String errorMessage = mainPage.getSignInError();
-        assertEquals("Неверное имя пользователя или пароль.", errorMessage);
     }
 }
 
