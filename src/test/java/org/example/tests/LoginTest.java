@@ -4,7 +4,6 @@ import org.example.TestingConstants;
 import org.example.pages.LoginPage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -13,9 +12,7 @@ public class LoginTest extends BaseTest{
 
     @BeforeAll
     public static void configureTest(){
-        driver = new FirefoxDriver();
-        driver.get(url);
-
+        initDriver();
         page = new LoginPage();
         page.init(driver);
 

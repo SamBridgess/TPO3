@@ -5,7 +5,6 @@ import org.example.TestingConstants;
 import org.example.pages.RegisterPage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.Objects;
 
@@ -16,9 +15,7 @@ public class RegisterTest extends BaseTest {
 
     @BeforeAll
     public static void configureTest(){
-        driver = new FirefoxDriver();
-        driver.get(url);
-
+        initDriver();
         page = new RegisterPage();
         page.init(driver);
 

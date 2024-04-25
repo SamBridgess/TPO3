@@ -9,35 +9,40 @@ public class QuickSearchPage extends Page{
     @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[6]/div/div/div[2]/div[1]/div[1]/div/div/div[1]/div[1]")
     private WebElement quickSearchButton;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"1ae9uy3r6wx_gender_female\"]")
+    @FindBy(how = How.XPATH, using = "/html/body/div[6]/div[2]/jsx/div/div/div[1]/div[1]/div[2]/ul/li[1]/label")
     private WebElement femaleRadio;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"1ae9uy3r6wx_gender_couples\"]")
+    @FindBy(how = How.XPATH, using = "/html/body/div[6]/div[2]/jsx/div/div/div[1]/div[1]/div[2]/ul/li[2]/label")
     private WebElement couplesRadio;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"1ae9uy3r6wx_gender_male\"]")
+    @FindBy(how = How.XPATH, using = "/html/body/div[6]/div[2]/jsx/div/div/div[1]/div[1]/div[2]/ul/li[3]/label")
     private WebElement maleRadio;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"o4e0b0z0o6.i_region_north_america\"]")
+
+                                   // /html/body/div[7]/div[2]/jsx/div/div/div[1]/div[3]/div[2]/ul/li[1]/label
+    @FindBy(how = How.XPATH, using = "/html/body/div[6]/div[2]/jsx/div/div/div[1]/div[3]/div[2]/ul/li[1]/label")
     private WebElement northAmericaCheckbox;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"1b1wtp12jfj_region_europe\"]")
+    @FindBy(how = How.XPATH, using = "/html/body/div[6]/div[2]/jsx/div/div/div[1]/div[3]/div[2]/ul/li[2]/label")
     private WebElement europeCheckbox;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"1b1wtp12jfj_region_cis\"]")
+    @FindBy(how = How.XPATH, using = "/html/body/div[6]/div[2]/jsx/div/div/div[1]/div[3]/div[2]/ul/li[3]/label")
     private WebElement russiaCheckbox;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"o4e0b0z0o6.i_region_latin_america\"]")
+    @FindBy(how = How.XPATH, using = "/html/body/div[6]/div[2]/jsx/div/div/div[1]/div[3]/div[2]/ul/li[4]/label")
     private WebElement latinAmericaCheckbox;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"o4e0b0z0o6.i_region_asia\"]")
+    @FindBy(how = How.XPATH, using = "/html/body/div[6]/div[2]/jsx/div/div/div[1]/div[3]/div[2]/ul/li[5]/label")
     private WebElement asiaCheckbox;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"o4e0b0z0o6.i_region_other\"]")
+    @FindBy(how = How.XPATH, using = "/html/body/div[6]/div[2]/jsx/div/div/div[1]/div[3]/div[2]/ul/li[6]/label")
     private WebElement otherCheckbox;
 
     @FindBy(how = How.XPATH, using = "/html/body/div[6]/div[2]/jsx/div/div/div[1]/div[4]/button[1]")
     private WebElement confirmQuickSearch;
+
+    @FindBy(how = How.CLASS_NAME, using = "lsr_i_highlight")
+    private WebElement searchTextResult;
 
     public void clickQuickSearchButton() {
         wait.until(ExpectedConditions.visibilityOf(quickSearchButton));
@@ -92,5 +97,10 @@ public class QuickSearchPage extends Page{
     public void clickConfirmQuickSearch() {
         wait.until(ExpectedConditions.visibilityOf(confirmQuickSearch));
         confirmQuickSearch.click();
+    }
+
+    public String getSearchResult(){
+        wait.until(ExpectedConditions.visibilityOf(searchTextResult));
+        return searchTextResult.getAttribute("innerHTML");
     }
 }
