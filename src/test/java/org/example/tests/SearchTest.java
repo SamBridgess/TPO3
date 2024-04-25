@@ -1,7 +1,7 @@
 package org.example.tests;
 
 import org.example.TestingConstants;
-import org.example.pages.MainPage;
+import org.example.pages.SearchPage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
@@ -12,17 +12,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class SearchTest {
     private static String url = "http://www.bongacams.com/";
     private static WebDriver driver;
-    private static MainPage mainPage;
+    private static SearchPage page;
 
     @BeforeAll
     public static void configureTest(){
         driver = new FirefoxDriver();
         driver.get(url);
 
-        mainPage = new MainPage();
-        mainPage.init(driver);
+        page = new SearchPage();
+        page.init(driver);
 
-        mainPage.agreeAndEnter();
+        page.agreeAndEnter();
     }
 
     private void navigateToMainPage() {
@@ -30,11 +30,11 @@ public class SearchTest {
     }
 
     private void testSearch(String expected, String search){
-        mainPage.fillSearchBar(search);
-        mainPage.clickSearchButton(); // почему-то работает только если кликнуть 2 раза (wtf)
-        mainPage.clickSearchButton();
+        page.fillSearchBar(search);
+        page.clickSearchButton(); // почему-то работает только если кликнуть 2 раза (wtf)
+        page.clickSearchButton();
 
-        String searchResult = mainPage.getSearchResult();
+        String searchResult = page.getSearchResult();
         navigateToMainPage();
         assertEquals(expected, searchResult);
     }

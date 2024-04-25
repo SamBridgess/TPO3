@@ -2,7 +2,7 @@ package org.example.tests;
 
 
 import org.example.TestingConstants;
-import org.example.pages.MainPage;
+import org.example.pages.RegisterPage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
@@ -15,38 +15,38 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RegisterTest {
     private static String url = "http://www.bongacams.com/";
     private static WebDriver driver;
-    private static MainPage mainPage;
+    private static RegisterPage page;
 
     @BeforeAll
     public static void configureTest(){
         driver = new FirefoxDriver();
         driver.get(url);
 
-        mainPage = new MainPage();
-        mainPage.init(driver);
+        page = new RegisterPage();
+        page.init(driver);
 
-        mainPage.agreeAndEnter();
+        page.agreeAndEnter();
     }
 
     private void skipWrongPopUps(){
         while(true){
-            mainPage.clickSignUp();
-            String popUpType = mainPage.getRegisterPopUpType();
+            page.clickSignUp();
+            String popUpType = page.getRegisterPopUpType();
             if(Objects.equals(popUpType, "member_join_popup horizont_green2 wl_default_links noemail"))
                 break;
-            mainPage.closeRegister();
+            page.closeRegister();
         }
     }
 
     private void testUsername(String expected, String username){
         skipWrongPopUps();
 
-        mainPage.fillSignUpUsername(username);
-        mainPage.fillSignUpPassword(TestingConstants.CORRECT_PASSWORD);
-        mainPage.clickTermsOfUse();
+        page.fillSignUpUsername(username);
+        page.fillSignUpPassword(TestingConstants.CORRECT_PASSWORD);
+        page.clickTermsOfUse();
 
-        String errorMessage = mainPage.getUsernameError();
-        mainPage.closeRegister();
+        String errorMessage = page.getUsernameError();
+        page.closeRegister();
         assertEquals(expected, errorMessage);
     }
 
@@ -79,12 +79,12 @@ public class RegisterTest {
     private void testPassword(String expected, String password){
         skipWrongPopUps();
 
-        mainPage.fillSignUpUsername(TestingConstants.CORRECT_USERNAME);
-        mainPage.fillSignUpPassword(password);
-        mainPage.clickTermsOfUse();
+        page.fillSignUpUsername(TestingConstants.CORRECT_USERNAME);
+        page.fillSignUpPassword(password);
+        page.clickTermsOfUse();
 
-        String errorMessage = mainPage.getPasswordError();
-        mainPage.closeRegister();
+        String errorMessage = page.getPasswordError();
+        page.closeRegister();
         assertEquals(expected, errorMessage);
     }
 
@@ -107,12 +107,12 @@ public class RegisterTest {
     public void termsOfUseTest(){
         skipWrongPopUps();
 
-        mainPage.fillSignUpUsername(TestingConstants.CORRECT_USERNAME);
-        mainPage.fillSignUpPassword(TestingConstants.CORRECT_PASSWORD);
-        mainPage.clickSingUpConfirm();
+        page.fillSignUpUsername(TestingConstants.CORRECT_USERNAME);
+        page.fillSignUpPassword(TestingConstants.CORRECT_PASSWORD);
+        page.clickSingUpConfirm();
 
-        String errorMessage = mainPage.getTermsOfUseError();
-        mainPage.closeRegister();
+        String errorMessage = page.getTermsOfUseError();
+        page.closeRegister();
         assertEquals("Обязательно к заполнению.", errorMessage);
     }
 }

@@ -1,7 +1,7 @@
 package org.example.tests;
 
 import org.example.TestingConstants;
-import org.example.pages.MainPage;
+import org.example.pages.LoginPage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
@@ -12,39 +12,39 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LoginTest {
     private static String url = "http://www.bongacams.com/";
     private static WebDriver driver;
-    private static MainPage mainPage;
+    private static LoginPage page;
 
     @BeforeAll
     public static void configureTest(){
         driver = new FirefoxDriver();
         driver.get(url);
 
-        mainPage = new MainPage();
-        mainPage.init(driver);
+        page = new LoginPage();
+        page.init(driver);
 
-        mainPage.agreeAndEnter();
+        page.agreeAndEnter();
     }
 
     @Test
     public void signInCorrectTest(){
-        mainPage.clickSignIn();
-        mainPage.fillSignInUsername(TestingConstants.EXISTING_USERNAME);
-        mainPage.fillSignInPassword(TestingConstants.EXISTING_PASSWORD);
-        mainPage.clickSignInConfirm();
+        page.clickSignIn();
+        page.fillSignInUsername(TestingConstants.EXISTING_USERNAME);
+        page.fillSignInPassword(TestingConstants.EXISTING_PASSWORD);
+        page.clickSignInConfirm();
 
-        String userPanelName = mainPage.getUserPanelName();
-        mainPage.logout();
+        String userPanelName = page.getUserPanelName();
+        page.logout();
         assertEquals(TestingConstants.EXISTING_USERNAME, userPanelName);
     }
 
     @Test
     public void signInIncorrectTest(){
-        mainPage.clickSignIn();
-        mainPage.fillSignInUsername(TestingConstants.WRONG_USERNAME);
-        mainPage.fillSignInPassword(TestingConstants.WRONG_PASSWORD);
-        mainPage.clickSignInConfirm();
+        page.clickSignIn();
+        page.fillSignInUsername(TestingConstants.WRONG_USERNAME);
+        page.fillSignInPassword(TestingConstants.WRONG_PASSWORD);
+        page.clickSignInConfirm();
 
-        String errorMessage = mainPage.getSignInError();
+        String errorMessage = page.getSignInError();
         assertEquals("Неверное имя пользователя или пароль.", errorMessage);
     }
 }
