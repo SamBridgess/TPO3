@@ -13,13 +13,14 @@ import java.util.Objects;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RegisterTest {
+    private static String url = "http://www.bongacams.com/";
     private static WebDriver driver;
     private static MainPage mainPage;
 
     @BeforeAll
     public static void configureTest(){
         driver = new FirefoxDriver();
-        driver.get("http://www.bongacams.com/");
+        driver.get(url);
 
         mainPage = new MainPage();
         mainPage.init(driver);

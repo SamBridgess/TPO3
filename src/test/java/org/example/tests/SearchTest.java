@@ -30,7 +30,6 @@ public class SearchTest {
     }
 
     private void testSearch(String expected, String search){
-        navigateToMainPage();
         mainPage.fillSearchBar(search);
         mainPage.clickSearchButton(); // почему-то работает только если кликнуть 2 раза (wtf)
         mainPage.clickSearchButton();
@@ -42,32 +41,11 @@ public class SearchTest {
 
     @Test
     public void correctSearchTest() {
-        testSearch("По вашему запросу ничего не найдено.", TestingConstants.CORRECT_SEARCH);
+        testSearch("Результат поиска:", TestingConstants.CORRECT_SEARCH);
     }
 
     @Test
     public void incorrectSearchTest() {
-        testSearch("Результат поиска:", TestingConstants.CORRECT_SEARCH);
-
-    }
-
-    @Test
-    public void someTest() {
-        testSearch("Результат поиска:", "lol");
-    }
-
-    @Test
-    public void someTest1() {
-        testSearch("Результат поиска:", "anya");
-    }
-
-    @Test
-    public void someTest2() {
-        testSearch("Результат поиска:", "katya");
-    }
-
-    @Test
-    public void someTest3() {
-        testSearch("По вашему запросу ничего не найдено.", "7c89y4t9q7384y8t");
+        testSearch("По вашему запросу ничего не найдено.", TestingConstants.INCORRECT_SEARCH);
     }
 }

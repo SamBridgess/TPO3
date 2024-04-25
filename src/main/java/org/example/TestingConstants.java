@@ -25,5 +25,5 @@ public class TestingConstants {
 
     //search
     public static final String CORRECT_SEARCH = "Angela";
-    public static final String INCORRECT_SEARCH = "234213523145";
+    public static final String INCORRECT_SEARCH = "kkkkkkkkkkkkkkkkkkkkkkkk";
 }

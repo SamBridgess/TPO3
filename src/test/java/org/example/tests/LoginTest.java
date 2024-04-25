@@ -10,21 +10,20 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginTest {
+    private static String url = "http://www.bongacams.com/";
     private static WebDriver driver;
     private static MainPage mainPage;
 
     @BeforeAll
     public static void configureTest(){
         driver = new FirefoxDriver();
-        driver.get("http://www.bongacams.com/");
+        driver.get(url);
 
         mainPage = new MainPage();
         mainPage.init(driver);
 
         mainPage.agreeAndEnter();
     }
-
-
 
     @Test
     public void signInCorrectTest(){
