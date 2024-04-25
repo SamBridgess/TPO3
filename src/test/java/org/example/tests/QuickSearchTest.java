@@ -2,12 +2,10 @@ package org.example.tests;
 
 import org.example.pages.QuickSearchPage;
 import org.junit.jupiter.api.BeforeAll;
-import org.openqa.selenium.WebDriver;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class QuickSearchTest {
-    private static String url = "http://www.bongacams.com/";
-    private static WebDriver driver;
+public class QuickSearchTest extends BaseTest{
     private static QuickSearchPage page;
 
     @BeforeAll
@@ -19,5 +17,15 @@ public class QuickSearchTest {
         page.init(driver);
 
         page.agreeAndEnter();
+    }
+
+    @Test
+    public void quickSearchTest(){
+        page.clickQuickSearchButton();
+       // page.clickCouplesRadio();
+        //page.clickRussiaCheckbox();
+       // page.clickLatinAmericaCheckbox();
+
+        page.clickConfirmQuickSearch();
     }
 }

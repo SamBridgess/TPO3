@@ -4,14 +4,11 @@ import org.example.TestingConstants;
 import org.example.pages.LoginPage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LoginTest {
-    private static String url = "http://www.bongacams.com/";
-    private static WebDriver driver;
+public class LoginTest extends BaseTest{
     private static LoginPage page;
 
     @BeforeAll

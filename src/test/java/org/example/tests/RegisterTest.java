@@ -5,16 +5,13 @@ import org.example.TestingConstants;
 import org.example.pages.RegisterPage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class RegisterTest {
-    private static String url = "http://www.bongacams.com/";
-    private static WebDriver driver;
+public class RegisterTest extends BaseTest {
     private static RegisterPage page;
 
     @BeforeAll

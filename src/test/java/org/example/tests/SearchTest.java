@@ -4,14 +4,11 @@ import org.example.TestingConstants;
 import org.example.pages.SearchPage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SearchTest {
-    private static String url = "http://www.bongacams.com/";
-    private static WebDriver driver;
+public class SearchTest extends BaseTest {
     private static SearchPage page;
 
     @BeforeAll
