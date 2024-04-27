@@ -21,7 +21,8 @@ public class LoginPage extends Page{
     @FindBy(how = How.NAME, using = "log_in[password]")
     private WebElement signInPassword;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/jsx/div/form/div/div[3]/button")
+    //    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/jsx/div/form/div/div[3]/button")
+    @FindBy(how = How.CLASS_NAME, using = "fa_btn")
     private WebElement signInConfirmButton;
 
     @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/div/div[3]/a[2]")
