@@ -6,7 +6,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class QuickSearchPage extends Page{
-    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[6]/div/div/div[2]/div[1]/div[1]/div/div/div[1]/div[1]")
+    @FindBy(how = How.XPATH, using = "//*[@class=\"ht_quick_search js-quick_search\"]")
     private WebElement quickSearchButton;
 
     @FindBy(how = How.XPATH, using = "/html/body/div[6]/div[2]/jsx/div/div/div[1]/div[1]/div[2]/ul/li[1]/label")
@@ -18,8 +18,6 @@ public class QuickSearchPage extends Page{
     @FindBy(how = How.XPATH, using = "/html/body/div[6]/div[2]/jsx/div/div/div[1]/div[1]/div[2]/ul/li[3]/label")
     private WebElement maleRadio;
 
-
-                                   // /html/body/div[7]/div[2]/jsx/div/div/div[1]/div[3]/div[2]/ul/li[1]/label
     @FindBy(how = How.XPATH, using = "/html/body/div[6]/div[2]/jsx/div/div/div[1]/div[3]/div[2]/ul/li[1]/label")
     private WebElement northAmericaCheckbox;
 
@@ -38,10 +36,10 @@ public class QuickSearchPage extends Page{
     @FindBy(how = How.XPATH, using = "/html/body/div[6]/div[2]/jsx/div/div/div[1]/div[3]/div[2]/ul/li[6]/label")
     private WebElement otherCheckbox;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div[6]/div[2]/jsx/div/div/div[1]/div[4]/button[1]")
+    @FindBy(how = How.XPATH, using = "//*[@class=\"mls_btn saf_params_btn bt30_green\"]")
     private WebElement confirmQuickSearch;
 
-    @FindBy(how = How.CLASS_NAME, using = "lsr_i_highlight")
+    @FindBy(how = How.XPATH, using = "//*[@class=\"lsr_i_highlight\"]")
     private WebElement searchTextResult;
 
     public void clickQuickSearchButton() {

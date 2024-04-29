@@ -12,4 +12,8 @@ public class BaseTest<T extends Page> {
         driver = new FirefoxDriver();
         driver.get(url);
     }
+
+    public void navigateToMainPage() {
+        driver.navigate().to(url);
+    }
 }

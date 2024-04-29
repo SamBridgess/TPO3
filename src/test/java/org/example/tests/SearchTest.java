@@ -19,13 +19,10 @@ public class SearchTest extends BaseTest {
         page.agreeAndEnter();
     }
 
-    private void navigateToMainPage() {
-        driver.navigate().to(url);
-    }
 
     private void testSearch(String expected, String search){
         page.fillSearchBar(search);
-        page.clickSearchButton(); // почему-то работает только если кликнуть 2 раза (wtf)
+        page.clickSearchButton();
         page.clickSearchButton();
 
         String searchResult = page.getSearchResult();

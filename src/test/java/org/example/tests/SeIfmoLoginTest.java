@@ -1,10 +1,9 @@
 package org.example.tests;
 
-import org.example.TestingConstants;
+
 import org.example.pages.Page;
 import org.example.pages.SeIfmoPage;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -34,6 +33,7 @@ public class SeIfmoLoginTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox");
         options.addArguments("window-size=1000,1500");
+
         chromeDriver = new ChromeDriver(options);
         chromeDriver.get(url);
         chromePage = new SeIfmoPage();
@@ -58,7 +58,7 @@ public class SeIfmoLoginTest {
         page.fillUsername("");
         page.fillPassword("");
         if(page.equals(chromePage)) {
-            Thread.sleep(5000);
+            Thread.sleep(3000);
         }
         page.clickSignInConfirm();
 

@@ -28,6 +28,7 @@ public class LoginTest extends BaseTest{
 
         String userPanelName = page.getUserPanelName();
         page.logout();
+        navigateToMainPage();
         assertEquals(TestingConstants.EXISTING_USERNAME, userPanelName);
     }
 

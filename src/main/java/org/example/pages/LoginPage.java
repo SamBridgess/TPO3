@@ -7,38 +7,33 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends Page{
-    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/a")
+    @FindBy(how = How.XPATH, using = "//*[@class=\"bt30 bt30_maroon bc_uppercase join_btn\"]")
     private WebElement signInButton;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/jsx/div/form/div/div[1]/div/div")
+    @FindBy(how = How.XPATH, using = "//*[@class=\"form_error\"]")
     private WebElement signInError;
 
-    // /html/body/div[2]/div[1]/div[5]/div/jsx/div/form/div/div[1]/div[2]/div/input
-    @FindBy(how = How.NAME, using = "log_in[username]")
+    @FindBy(how = How.XPATH, using = "//*[@name=\"log_in[username]\"]")
     private WebElement signInUsername;
 
-    // /html/body/div[2]/div[1]/div[5]/div/jsx/div/form/div/div[2]/div[2]/div/input
-    @FindBy(how = How.NAME, using = "log_in[password]")
+    @FindBy(how = How.XPATH, using = "//*[@name=\"log_in[password]\"]")
     private WebElement signInPassword;
 
-    //    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/jsx/div/form/div/div[3]/button")
-    @FindBy(how = How.CLASS_NAME, using = "fa_btn")
+    @FindBy(how = How.XPATH, using = "//*[@class=\"fa_btn bt30 bt30_green\"]")
     private WebElement signInConfirmButton;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/div/div[3]/a[2]")
+    @FindBy(how = How.XPATH, using = "//*[@class=\"name\"]")
     private WebElement userPanel;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/div/div[3]/div[2]")
+    @FindBy(how = How.XPATH, using = "//*[@class=\"control_popover js-control_popover\"]")
     private WebElement menu;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[1]/div[5]/div/div/div[3]/div[2]/div/ul/li[10]")
+    @FindBy(how = How.XPATH, using = "//*[@class=\"cp_l_item __logout\"]")
     private WebElement logoutButton;
 
-    @FindBy(how = How.CLASS_NAME, using = "spinner")
+    @FindBy(how = How.CLASS_NAME, using = "//*[@class=\"spinner\"]")
     private WebElement spinner;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div[2]/div[6]/div/div/div[1]/div[1]/div[2]/span/a")
-    private WebElement goToMainPage;
 
     public void clickSignIn(){
         wait.until(ExpectedConditions.visibilityOf(signInButton));
@@ -77,8 +72,5 @@ public class LoginPage extends Page{
     public void logout(){
         wait.until(ExpectedConditions.visibilityOf(userPanel));
         action.moveToElement(userPanel).moveToElement(logoutButton).click().build().perform();
-
-        wait.until(ExpectedConditions.visibilityOf(goToMainPage));
-        goToMainPage.click();
     }
 }

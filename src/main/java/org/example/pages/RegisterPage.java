@@ -22,19 +22,22 @@ public class RegisterPage extends Page {
     @FindBy(how = How.XPATH, using = "//*[@id=\"user_member_terms_of_use\"]")
     private WebElement termsOfUseBox;
 
-    @FindBy(how = How.XPATH, using = "/html/body/jsx[3]/div/div/div[2]/div/div/div/div/div[2]/form/div/div[1]/div[1]/div[1]/div[4]/div/div")
+    // /html/body/jsx[3]/div/div/div[2]/div/div/div/div/div[2]/form/div/div[1]/div[1]/div[1]/div[4]/div/div
+    @FindBy(how = How.XPATH, using = "//*[@class=\"form_error\"]")
     private WebElement usernameError;
 
-    @FindBy(how = How.XPATH, using = "/html/body/jsx[3]/div/div/div[2]/div/div/div/div/div[2]/form/div/div[1]/div[2]/div/div[4]/div/div")
+    // /html/body/jsx[3]/div/div/div[2]/div/div/div/div/div[2]/form/div/div[1]/div[2]/div/div[4]/div/div
+    @FindBy(how = How.XPATH, using = "//*[@class=\"form_error\"]")
     private WebElement passwordError;
 
-    @FindBy(how = How.XPATH, using = "/html/body/jsx[3]/div/div/div[2]/div/div/div/div/div[2]/form/div/div[1]/div[4]/div/div[4]/div/div")
+    // /html/body/jsx[3]/div/div/div[2]/div/div/div/div/div[2]/form/div/div[1]/div[4]/div/div[4]/div/div
+    @FindBy(how = How.XPATH, using = "//*[@class=\"form_error\"]")
     private WebElement termsOfUseError;
 
-    @FindBy(how = How.XPATH, using = "/html/body/jsx[3]/div/div/div[2]/div/div/div/div/div[2]/form/div/div[2]/button")
+    @FindBy(how = How.XPATH, using = "//*[@class=\"join_submit bt30 bt30_green\"]")
     private WebElement signUpConfirmButton;
 
-    @FindBy(how = How.XPATH, using = "/html/body/jsx[3]/div/div/div[2]/div/button")
+    @FindBy(how = How.XPATH, using = "//*[@class=\"fp_btn bc_flex bc_flex_full_center __close\"]")
     private WebElement closeRegisterButton;
 
 
